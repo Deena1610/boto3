@@ -1,4 +1,19 @@
-## Code of Conduct
-This project has adopted the [Amazon Open Source Code of Conduct](https://aws.github.io/code-of-conduct).
-For more information see the [Code of Conduct FAQ](https://aws.github.io/code-of-conduct-faq) or contact
-opensource-codeofconduct@amazon.com with any additional questions or comments.
+pip install flask
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "வணக்கம்! இது உங்கள் AI-powered website."
+
+@app.route("/predict", methods=["POST"])
+def predict():
+    data = request.json
+    user_input = data.get("input", "")
+    response = f"நீங்கள் சொன்னது: {user_input}. நான் உங்களுக்கு உதவுகிறேன்!"
+    return jsonify({"response": response})
+
+if __name__ == "__main__":
+    app.run(debug=True)
+		
